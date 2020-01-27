@@ -1,0 +1,110 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "firstName",
+    "lastName",
+    "address"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The Id Schema",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "firstName": {
+      "$id": "#/properties/firstName",
+      "type": "string",
+      "title": "The Firstname Schema",
+      "default": "",
+      "examples": [
+        "John"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "lastName": {
+      "$id": "#/properties/lastName",
+      "type": "string",
+      "title": "The Lastname Schema",
+      "default": "",
+      "examples": [
+        "Doe"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "address": {
+      "$id": "#/properties/address",
+      "type": "object",
+      "title": "The Address Schema",
+      "required": [
+        "line1",
+        "line2",
+        "line3",
+        "postalCode",
+        "country"
+      ],
+      "properties": {
+        "line1": {
+          "$id": "#/properties/address/properties/line1",
+          "type": "string",
+          "title": "The Line1 Schema",
+          "default": "",
+          "examples": [
+            "Address line 1"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "line2": {
+          "$id": "#/properties/address/properties/line2",
+          "type": "string",
+          "title": "The Line2 Schema",
+          "default": "",
+          "examples": [
+            "Address line 2"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "line3": {
+          "$id": "#/properties/address/properties/line3",
+          "type": "string",
+          "title": "The Line3 Schema",
+          "default": "",
+          "examples": [
+            "Address line 3"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "postalCode": {
+          "$id": "#/properties/address/properties/postalCode",
+          "type": "string",
+          "title": "The Postalcode Schema",
+          "default": "",
+          "examples": [
+            "TW32B"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country": {
+          "$id": "#/properties/address/properties/country",
+          "type": "string",
+          "title": "The Country Schema",
+          "default": "",
+          "examples": [
+            "UK"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}
+
+
