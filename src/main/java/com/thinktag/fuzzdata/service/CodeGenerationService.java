@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,16 +25,22 @@ public class CodeGenerationService {
     @Value("${code.location}")
     String codeLocation;
 
-    @Value("classpath:strings.txt")
+    @Value("classpath:data/strings.txt")
     Resource fuzzyStrings;
 
     List<String> base64Strings = new ArrayList<>();
 
-    public List<String> getBase64Strings()throws IOException {
+    public List<String> getBase64Strings() throws IOException {
         synchronized (base64Strings) {
             if (base64Strings.isEmpty()) {
-                List<String> lines = Files.readAllLines(fuzzyStrings.getFile().toPath());
-                lines.stream().filter(l -> !l.startsWith("#")).forEach(o -> base64Strings.add(o));
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(fuzzyStrings.getInputStream()))) {
+                    String line=null;
+                    while ((line = br.readLine()) != null) {
+                        if (!line.startsWith("#")) {
+                            base64Strings.add(line);
+                        }
+                    }
+                }
             }
             return base64Strings;
         }
