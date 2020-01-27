@@ -1,3 +1,5 @@
+https://medium.com/@pradeep_thomas/naughty-strings-and-api-things-security-5046699ccc2
+
 ## Building it
 
 Clone the repo and build it using
